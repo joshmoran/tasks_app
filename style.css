@@ -21,7 +21,7 @@ h1:nth-child(2n+1), h3 {
 }
 
 .pendingTask, .completeTasks {
-    border: 1px solid black;
+    /* border: 1px solid black; */
     display: grid;
     grid-template-columns: 10% 90%;
 }
@@ -57,7 +57,7 @@ h1:nth-child(2n+1), h3 {
 }
 
 img {
-    height: 4em;
+    height: 2.5em;
 
 }
 

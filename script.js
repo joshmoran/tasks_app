@@ -1,79 +1,107 @@
+// Pending task parent
 let taskDiv = document.getElementById('taskList');
+// Completed task parent 
 let finishedDiv = document.getElementById('completeList');
-
+// Get input element for adding a task
 let taskName1 = document.getElementById('taskInput');
+// Get the error message element
 let errorInput = document.getElementById('error');
+// Get the pending counter element
 let noOfEl = document.getElementById('amountOfTasks');
+// Get the finished counter element 
 let noOfFinEl = document.getElementById('amountOfFinishedTasks');
 
+// Get add task button
 let addBtn = document.getElementById('addTask');
 
-
-
+//  Add function to the add task button
 addBtn.addEventListener('click', addTask );
 
+// A function to update event listeners, counters etc
 function updateTasks() {
+    // Get the amount of pending tasks 
     noOfTasks = document.getElementsByClassName('pendingTask').length;
+    // Get the amount of computed tasks 
     noOfCompleteTasks = document.getElementsByClassName('completeTasks').length;
     
+    // Set the counter for pending tasks
     noOfEl.textContent = noOfTasks;
+    // Set the counter for completed tasks
     noOfFinEl.textContent = noOfCompleteTasks;
 
-    console.log(noOfCompleteTasks);
+    // Get all images in the completed section, so the task can be moved back to pending 
     let undoCompleteBtn = document.getElementsByClassName('complete');
-
+    // Get buttons for when a task is being renamed
     let confirmRenameBtn = document.getElementsByClassName('confirmRename');
+    // Get rename buttons
     let renameBtn = document.getElementsByClassName('rename');
-    let deleteBtn = document.getElementsByClassName('delete');            let completeBtn = document.getElementsByClassName('done');
+    // Get delete buttons
+    let deleteBtn = document.getElementsByClassName('delete');     
+    // Get images in the pending tasks, so the task can be completed and moved into the completed tasks section
+    let completeBtn = document.getElementsByClassName('done');
 
+    // Get the number of rename buttons and cycle through 
     for ( a = 0; a < renameBtn.length; a++ ){
+        // Add event listeners to the rename buttons 
         renameBtn[a].addEventListener('click', renameFunction, true );
 
     }
 
+    // Check the length of confirm buttons greater than 0 
     if (confirmRenameBtn.length > 0 ) {
+        // Get the number of when a rename is being confirmed and cycle through 
         for ( b = 0; b < confirmRenameBtn.length; b++ ){
+            // Add event listeners to the confirm rename buttons
             confirmRenameBtn[b].addEventListener('click', confirmRenameFunction );
 
         }
     }
 
+    // Get the length of delete buttons and cycle through them 
     for ( c = 0; c < noOfTasks; c++ ) {
+        // Add event listeners to the delete buttons
         deleteBtn[c].addEventListener('click', deleteFunction );    
     }
 
-    for( d = 0; d < completeBtn.length; d++ ){        
+    // Get the length of completed image buttons and cycle through them
+    for( d = 0; d < completeBtn.length; d++ ){    
+        // Add event listeners to the completed image buttons
         completeBtn[d].addEventListener('click', taskComplete );
         
     }   
 
+    // Get the length of undo buttons and cycle through them
     for ( e = 0; e < noOfCompleteTasks; e++ ) {
+        // Add event listeners to the undo buttons
         undoCompleteBtn[e].addEventListener('click', undoFunction );
     }
-    
-    console.log('updated numbers');
-
 }
 
 // A function to create a task div for a un-completed task
 function createPendingTask( taskName ) {
-    html = '<div class="pendingTask"><div class="left pending"><img class="done" src="img/square-xmark.svg"></div><div class="right"><h2 class="name">' + String(taskName) + '</h2><div class="actions"><button class="rename">Rename</button><button class="delete">Delete</button></div></div></div>';
-
+    // Create the html for the pending task with the task name inside and the buttons 
+    html = '<div class="pendingTask"><div class="left pending"><img class="done" alt="complete task icon" src="img/square-xmark.svg"></div><div class="right"><h2 class="name">' + String(taskName) + '</h2><div class="actions"><button class="rename">Rename</button><button class="delete">Delete</button></div></div></div>';
+    // Return the HTML 
     return html;
 }
 
 // A function to create a task div for a completed task
 function createFinishedTask( taskName ) {
-    html = '<div class="completeTasks"><div class="left"><img class="complete" src="img/square-xmark.svg"></div><div class="right"><h2 class="strikethrough">' + String(taskName) + '</div></div>';
-
+    // Create the html for the completed task with the task name inside 
+    html = '<div class="completeTasks"><div class="left"><img class="complete" alt="undo the task icon" src="img/square-xmark.svg"></div><div class="right"><h2 class="strikethrough">' + String(taskName) + '</div></div>';
+    // Return the html
     return html; 
 }
 
+// Create and setup an error message for the webpage
 function createError( message ) {
+    // Append the message to the error message
     errorInput.textContent = message;
+    // Add 'attention' class to the error message 
     errorInput.classList.add('attention');
+    // Set the error message to be shown
     errorInput.style.display = 'flex';
-
+    // Return the function
     return;
 }
 
