@@ -1,0 +1,110 @@
+#container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+h1:first-child {
+    text-align: center;
+}
+
+h3{
+    vertical-align: middle;
+}
+
+h1:nth-child(2n+1), h3 {
+    text-align: center;
+    padding-left: 1em;
+}
+
+.numbers {
+    font-size: 1.5em;
+}
+
+.pendingTask, .completeTasks {
+    border: 1px solid black;
+    display: grid;
+    grid-template-columns: 10% 90%;
+}
+
+.actions button { 
+    width: 10em;
+    height: 3em;
+    padding: 0.25em;
+    margin: 0.5em;
+}
+
+.left, .right { 
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.left {
+    align-items: center;
+    width: fit-content;
+    margin: 1em auto;
+}
+
+.right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.attention {
+    border: 3px solid darkred;
+    padding: 1em 0;
+    margin: 1em 0;
+}
+
+img {
+    height: 4em;
+
+}
+
+.strikethrough {
+    text-decoration: line-through;
+}
+
+#add {
+    margin: 1em auto 0;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bottom {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    margin: 2em auto;
+}
+
+#taskInput, #addTask {
+    padding: 0.25em;
+    font-size: 1.25em;
+}
+
+#taskInput {
+    width: 70%;
+}
+
+
+#error  {
+    justify-content: center;
+    display: none;
+    font-size: 3em;
+    text-align: center;
+    color: darkred
+}
+
+#addTask {
+    width: 20%;
+}
+
+@media screen and (min-width: 720px) {
+    #container {
+        max-width: 600px;
+    }
+}
